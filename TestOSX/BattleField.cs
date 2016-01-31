@@ -39,7 +39,7 @@ namespace TestOSX
 			Console.WriteLine ("************************");
 		}
 
-		public void Simulate(){
+		public bool Simulate(){
 
 			for (int i = 0; i < 30; i++) {
 				Console.WriteLine ("\n### ROUND " + (i+1) + " ###\n");
@@ -54,7 +54,9 @@ namespace TestOSX
 						ExecuteAbility (ability, a, target);
 
 						RemoveCorpses ();
-						CheckIfEnded ();
+						uint code = CheckIfEnded ();
+						if (code > 0)
+							return (code == 1);
 					}
 				}
 				foreach (ActiveUnit e in Enemies) {
@@ -66,12 +68,16 @@ namespace TestOSX
 						ExecuteAbility (ability, e, target);
 
 						RemoveCorpses ();
-						CheckIfEnded ();
+						uint code = CheckIfEnded ();
+						if (code > 0)
+							return (code == 1);
 					}
 				}
 
-				Console.Read ();
+				//Console.Read ();
 			}
+
+			return true;
 		}
 
 		public void ExecuteAbility(Ability ability,
@@ -96,17 +102,18 @@ namespace TestOSX
 			}
 		}
 
-		public void CheckIfEnded(){
+		public uint CheckIfEnded(){
 			if (Enemies.Count == 0) {
 				Console.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
 				Console.WriteLine ("^^^^^ ALLIES WIN ^^^^^^");
-				Environment.Exit (0);
+				return 1;
 			}
 			if (Allies.Count == 0) {
 				Console.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
 				Console.WriteLine ("^^^^^ ENEMIES WIN ^^^^^^");
-				Environment.Exit (0);
+				return 2;
 			}
+			return 0;
 		}
 	}
 }
