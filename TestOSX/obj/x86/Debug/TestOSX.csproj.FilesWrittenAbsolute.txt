@@ -3,3 +3,8 @@
 /Users/newilson/Projects/TestOSX/TestOSX/bin/Debug/TestOSX.exe
 /Users/newilson/Projects/TestOSX/TestOSX/obj/x86/Debug/TestOSX.exe
 /Users/newilson/Projects/TestOSX/TestOSX/obj/x86/Debug/TestOSX.exe.mdb
+/Users/mtear/gamedev/TestOSX/TestOSX/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mtear/gamedev/TestOSX/TestOSX/bin/Debug/TestOSX.exe.mdb
+/Users/mtear/gamedev/TestOSX/TestOSX/bin/Debug/TestOSX.exe
+/Users/mtear/gamedev/TestOSX/TestOSX/obj/x86/Debug/TestOSX.exe
+/Users/mtear/gamedev/TestOSX/TestOSX/obj/x86/Debug/TestOSX.exe.mdb

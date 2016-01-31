@@ -12,7 +12,7 @@ namespace TestOSX
 			}
 		}
 
-		private uint hp, attack, defense, agility, intelligence, luck;
+		private uint hp, attack, defense, agility, accuracy, luck;
 		public uint HP{
 			get{
 				return hp;
@@ -33,9 +33,9 @@ namespace TestOSX
 				return agility;
 			}
 		}
-		public uint INT {
+		public uint ACC {
 			get {
-				return intelligence;
+				return accuracy;
 			}
 		}
 		public uint LUK {
@@ -45,21 +45,21 @@ namespace TestOSX
 		}
 
 		public StatContainer (uint level, uint hp, uint attack, uint defense,
-			uint agility, uint intelligence, uint luck)
+			uint agility, uint accuracy, uint luck)
 		{
 			this.level = level;
 			this.hp = hp;
 			this.attack = attack;
 			this.defense = defense;
 			this.agility = agility;
-			this.intelligence = intelligence;
+			this.accuracy = accuracy;
 			this.luck = luck;
 		}
 
 		public override string ToString ()
 		{
-			return string.Format ("Level: {0}\nHP: {1}\nATK: {2}\nDEF: {3}\nAGI: {4}\nINT: {5}\nLUK: {6}",
-				Level, HP, ATK, DEF, AGI, INT, LUK);
+			return string.Format ("Level: {0}\nHP: {1}\nATK: {2}\nDEF: {3}\nAGI: {4}\nACC: {5}\nLUK: {6}",
+				Level, HP, ATK, DEF, AGI, ACC, LUK);
 		}
 	}
 }

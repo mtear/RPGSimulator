@@ -7,8 +7,8 @@ namespace TestOSX
 	{
 
 		public EnemyClass (double hp, double attack, double defense,
-			double agility, double intelligence, double luck)
-			: base(hp, attack, defense, agility, intelligence, luck)
+			double agility, double accuracy, double luck)
+			: base(hp, attack, defense, agility, accuracy, luck)
 		{
 			
 		}
@@ -31,8 +31,8 @@ namespace TestOSX
 			return (uint)(this.agility * level);
 		}
 
-		private uint GetINT(uint level){
-			return (uint)(this.intelligence * level);
+		private uint GetACC(uint level){
+			return (uint)(this.accuracy * level);
 		}
 
 		private uint GetLUK(uint level){
@@ -42,7 +42,7 @@ namespace TestOSX
 		public StatContainer GetStats(uint level){
 			return new StatContainer(level, GetHP(level),
 				GetATK(level), GetDEF(level), GetAGI(level),
-				GetINT(level), GetLUK(level));
+				GetACC(level), GetLUK(level));
 		}
 
 	}
