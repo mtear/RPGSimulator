@@ -5,7 +5,7 @@ namespace TestOSX
 {
 	public class BasicAttack : Ability
 	{
-		public BasicAttack () : base("Attack", "", 0)
+		public BasicAttack () : base("Attack", "", 0, 0.9)
 		{
 		}
 
@@ -14,11 +14,11 @@ namespace TestOSX
 		}
 
 		public override void UsageEffect(ActiveUnit user, ActiveUnit target){
-			target.TakeDamage (Damage(user.Stats));
+			target.TakeDamage (user, this);
 		}
 
-		public override uint Damage(StatContainer st){
-			return st.ATK;
+		public override uint Damage(ActiveUnit user){
+			return user.Stats.ATK;
 		}
 
 		public override ActiveUnit ChooseTarget (List<ActiveUnit> allies,

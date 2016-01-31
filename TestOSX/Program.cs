@@ -8,7 +8,7 @@ namespace TestOSX
 		public static void Main (string[] args)
 		{
 			List<ActiveUnit> allies = new List<ActiveUnit> ();
-			allies.Add (new Character ("Nic", "", 10,
+			allies.Add (new Character ("Nic", "", 5,
 				1, new uint[]{ 0 }, null, typeof(Drifter)).CreateActiveCharacter ());
 
 			List<ActiveUnit> enemies = new List<ActiveUnit> ();

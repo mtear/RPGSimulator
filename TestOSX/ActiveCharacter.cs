@@ -13,5 +13,10 @@ namespace TestOSX
 
 		}
 
+		public override double DamageModifier(){
+			double roll = ((double)Ability.R.Next (20)) * .1;
+			return .4 + roll;
+		}
+
 	}
 }

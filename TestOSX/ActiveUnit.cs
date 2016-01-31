@@ -43,20 +43,55 @@ namespace TestOSX
 			currenthealth = currenthp;
 		}
 
-		public void TakeDamage(uint damage){
-			Console.WriteLine ("%%%%% " + this.name +
-				" TAKES " + damage + " DAMAGE %%%%%\n");
-			
-			if (damage > currenthealth) {
-				currenthealth = 0;
-			} else {
-				currenthealth -= damage;
+		public void TakeDamage(ActiveUnit user, Ability ability){
+
+			//Calculate damage
+			uint damage = ability.Damage (user);
+			if (stats.DEF/2 >= damage)
+				damage = 1;
+			else {
+				damage -= stats.DEF/2;
+				damage = ((uint)Math.Ceiling(((double)damage) * DamageModifier()));
 			}
+
+			double hitchance = HitChance (user, ability);
+
+			bool HIT = Ability.R.NextDouble () <= hitchance;
+
+			if (HIT) { //Attack hits
+				Console.WriteLine ("%%%%% " + this.name +
+					" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
+			
+				if (damage > currenthealth) {
+					currenthealth = 0;
+				} else {
+					currenthealth -= damage;
+				}
+			} else { //Attack misses
+				Console.WriteLine ("%%%%% ATTACK MISSED! (" + hitchance + ") %%%%%\n");
+			}
+		}
+
+		private double HitChance(ActiveUnit user, Ability ability){
+			double hitchance = 1;
+			if(user.stats.ACC != 0){
+				hitchance = (( ((double)user.stats.ACC) * 1.1 - ((double)stats.AGI)*.25)
+					/ (double)user.stats.ACC) * ability.Accuracy;
+			}
+			//Cap hitchance at 95%
+			if (hitchance > .95)
+				hitchance = .95;
+			else if (hitchance < .4)
+				hitchance = .4;
+
+			return hitchance;
 		}
 
 		public Ability SelectAbility(BattleField bf){
 			return skills [0];
 		}
+
+		public virtual double DamageModifier (){ return 0;}
 
 	}
 }
