@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOSX", "TestOSX\TestOSX.csproj", "{7AD2EC08-6FFB-49D7-B3AC-E882D391B57F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AD2EC08-6FFB-49D7-B3AC-E882D391B57F}.Debug|x86.ActiveCfg = Debug|x86
+		{7AD2EC08-6FFB-49D7-B3AC-E882D391B57F}.Debug|x86.Build.0 = Debug|x86
+		{7AD2EC08-6FFB-49D7-B3AC-E882D391B57F}.Release|x86.ActiveCfg = Release|x86
+		{7AD2EC08-6FFB-49D7-B3AC-E882D391B57F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
