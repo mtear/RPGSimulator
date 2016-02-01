@@ -5,7 +5,7 @@ namespace TestOSX
 {
 	public class Drifter : PlayerClass
 	{
-		public Drifter () : base(3, 1, 1, 1, 1, 1)
+		public Drifter () : base(3, 1.05, 1, .9, 1, .7)
 		{
 		}
 

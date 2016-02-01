@@ -5,7 +5,7 @@ namespace TestOSX
 {
 	public class Slime : EnemyClass
 	{
-		public Slime () : base(2.2,.8,.8,1,.8,0)
+		public Slime () : base(2,.8,.8,.9,.8,.5)
 		{
 		}
 

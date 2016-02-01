@@ -59,13 +59,36 @@ namespace TestOSX
 			bool HIT = Ability.R.NextDouble () <= hitchance;
 
 			if (HIT) { //Attack hits
-				Console.WriteLine ("%%%%% " + this.name +
-					" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
-			
-				if (damage > currenthealth) {
-					currenthealth = 0;
+
+				double critchance = ((((double)user.stats.LUK) - ((double)stats.LUK))
+					/ 100) + .03;
+				if (critchance < .03)
+					critchance = .03;
+				else if (critchance > .25)
+					critchance = .25;
+				bool CRIT = Ability.R.NextDouble () <= critchance;
+
+				if (CRIT) {
+					Console.WriteLine ("%%%%% CRITICAL HIT! (" + critchance + ") %%%%%");
+					Console.WriteLine ("%%%%% " + this.name +
+						" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
+
+					damage = (uint)(((double)damage) * 2);
+					
+					if (damage > currenthealth) {
+						currenthealth = 0;
+					} else {
+						currenthealth -= damage;
+					}
 				} else {
-					currenthealth -= damage;
+					Console.WriteLine ("%%%%% " + this.name +
+						" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
+
+					if (damage > currenthealth) {
+						currenthealth = 0;
+					} else {
+						currenthealth -= damage;
+					}
 				}
 			} else { //Attack misses
 				Console.WriteLine ("%%%%% ATTACK MISSED! (" + hitchance + ") %%%%%\n");
