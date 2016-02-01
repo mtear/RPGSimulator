@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace TestOSX
 {
-	public class BasicAttack : Ability
+	public class RockThrow : Ability
 	{
-		public BasicAttack () : base("Attack", "", 0, 0.9, 1)
+		public RockThrow () : base("Rock Throw", "", 1, 0.8, 0)
 		{
 		}
 
 		public override uint UsageProbability(BattleField bf){
-			return 1;
+			return 5;
 		}
 
 		public override void UsageEffect_Inner(ActiveUnit user, ActiveUnit target){
@@ -18,7 +18,7 @@ namespace TestOSX
 		}
 
 		public override uint Damage(ActiveUnit user){
-			return user.Stats.ATK;
+			return (uint)(user.Stats.ATK*1.7);
 		}
 
 		public override ActiveUnit ChooseTarget (List<ActiveUnit> allies,
@@ -27,4 +27,3 @@ namespace TestOSX
 		}
 	}
 }
-

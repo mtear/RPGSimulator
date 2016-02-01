@@ -20,6 +20,7 @@ namespace TestOSX
 		public override List<Ability> GetAbilities(uint exp){
 			List<Ability> ret = new List<Ability>();
 			ret.Add(new BasicAttack());
+			ret.Add (new RockThrow ());
 			return ret;
 		}
 	}

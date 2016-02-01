@@ -45,33 +45,39 @@ namespace TestOSX
 				Console.WriteLine ("\n### ROUND " + (i+1) + " ###\n");
 				PrintState ();
 
-				foreach (ActiveUnit a in Allies) {
+				List<ActiveUnit> allunits = new List<ActiveUnit> ();
+				foreach (ActiveUnit a in Allies)
+					allunits.Add (a);
+				foreach (ActiveUnit e in Enemies)
+					allunits.Add (e);
+
+				//Sort by AGI
+				allunits.Sort((x, y) => string.Compare(y.Stats.AGI.ToString(),
+					x.Stats.AGI.ToString()));
+
+				foreach (ActiveUnit a in allunits) {
+
+					if (a.CurrentHP == 0)
+						continue;
+
 					Ability ability = a.SelectAbility (this);
-					uint weight = ability.UsageProbability (this);
-					if (weight == 1) {
-						ActiveUnit target = ability.ChooseTarget
-							(Allies, Enemies);
-						ExecuteAbility (ability, a, target);
+					ActiveUnit target;
+					if(a.GetType() == typeof(ActiveCharacter))
+						target = ability.ChooseTarget (Allies, Enemies);
+					else
+						target = ability.ChooseTarget (Enemies, Allies);
+					ExecuteAbility (ability, a, target);
 
-						RemoveCorpses ();
-						uint code = CheckIfEnded ();
-						if (code > 0)
-							return (code == 1);
+					//lower cooldowns
+					foreach (Ability s in a.Skills) {
+						if(s != ability)
+							s.LowerCooldown ();
 					}
-				}
-				foreach (ActiveUnit e in Enemies) {
-					Ability ability = e.SelectAbility (this);
-					uint weight = ability.UsageProbability (this);
-					if (weight == 1) {
-						ActiveUnit target = ability.ChooseTarget 
-							(Enemies, Allies);
-						ExecuteAbility (ability, e, target);
 
-						RemoveCorpses ();
-						uint code = CheckIfEnded ();
-						if (code > 0)
-							return (code == 1);
-					}
+					RemoveCorpses ();
+					uint code = CheckIfEnded ();
+					if (code > 0)
+						return (code == 1);
 				}
 
 				//Console.Read ();

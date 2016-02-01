@@ -66,6 +66,7 @@ namespace TestOSX
 					critchance = .03;
 				else if (critchance > .25)
 					critchance = .25;
+				critchance *= ability.CritChance;
 				bool CRIT = Ability.R.NextDouble () <= critchance;
 
 				if (CRIT) {
@@ -111,7 +112,18 @@ namespace TestOSX
 		}
 
 		public Ability SelectAbility(BattleField bf){
-			return skills [0];
+			uint index = 0, i = 0;
+			uint maxweight = 0;
+			foreach (Ability s in skills) {
+				uint up = s.UsageProbability (bf);
+				if (up > maxweight
+					&& s.CurrentCooldown == 0) {
+					maxweight = up;
+					index = i;
+				}
+				i++;
+			}
+			return skills [(int)index];
 		}
 
 		public virtual double DamageModifier (){ return 0;}

@@ -50,6 +50,7 @@
     <Compile Include="Slime.cs" />
     <Compile Include="PlayerClass.cs" />
     <Compile Include="Class.cs" />
+    <Compile Include="RockThrow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
