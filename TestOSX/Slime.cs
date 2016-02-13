@@ -14,6 +14,17 @@ namespace TestOSX
 			ret.Add(new BasicAttack());
 			return ret;
 		}
+
+		public override List<Item> Drops (float droprate){
+			List<Item> ret = new List<Item> ();
+			if (Ability.R.Next (10) < 5)
+				ret.Add (new WoodShield ());
+			if (Ability.R.Next (10) == 0)
+				ret.Add (new IronHelm ());
+
+			return ret;
+		}
+
 	}
 }
 

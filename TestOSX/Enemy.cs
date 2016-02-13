@@ -16,7 +16,7 @@ namespace TestOSX
 
 			List<Ability> abilities = c.GetAbilities (this.level);
 
-			return new ActiveEnemy (name, stats, abilities, currenthp);
+			return new ActiveEnemy (name, stats, abilities, currenthp, c);
 		}
 
 		public ActiveEnemy CreateActiveEnemy(){

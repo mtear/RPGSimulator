@@ -45,6 +45,8 @@ namespace TestOSX
 				GetACC(level), GetLUK(level));
 		}
 
+		public abstract List<Item> Drops (float droprate);
+
 	}
 }
 

@@ -8,41 +8,45 @@ namespace TestOSX
 		public List<ActiveUnit> Allies;
 		public List<ActiveUnit> Enemies;
 
+		private List<Item> Spoils;
+
 		public BattleField (List<ActiveUnit> allies,
 			List<ActiveUnit> enemies)
 		{
 			this.Allies = allies;
 			this.Enemies = enemies;
+
+			Spoils = new List<Item> ();
 		}
 
 		public void PrintState(){
-			Console.WriteLine ("");
-			Console.WriteLine ("************************");
+			Utility.WriteLine ("");
+			Utility.WriteLine ("************************");
 
-			Console.WriteLine ("****** ALLIES ******");
+			Utility.WriteLine ("****** ALLIES ******");
 			foreach (ActiveUnit a in Allies) {
-				Console.WriteLine ("");
-				Console.WriteLine (a.Name);
-				Console.WriteLine ("Current HP: " + a.CurrentHP);
-				Console.WriteLine (a.Stats.ToString());
+				Utility.WriteLine ("");
+				Utility.WriteLine (a.Name);
+				Utility.WriteLine ("Current HP: " + a.CurrentHP);
+				Utility.WriteLine (a.Stats.ToString());
 			}
-			Console.WriteLine ("");
-			Console.WriteLine ("****** ENEMIES ******");
+			Utility.WriteLine ("");
+			Utility.WriteLine ("****** ENEMIES ******");
 			foreach (ActiveUnit e in Enemies) {
-				Console.WriteLine ("");
-				Console.WriteLine (e.Name);
-				Console.WriteLine ("Current HP: " + e.CurrentHP);
-				Console.WriteLine (e.Stats.ToString());
+				Utility.WriteLine ("");
+				Utility.WriteLine (e.Name);
+				Utility.WriteLine ("Current HP: " + e.CurrentHP);
+				Utility.WriteLine (e.Stats.ToString());
 			}
 
-			Console.WriteLine ("");
-			Console.WriteLine ("************************");
+			Utility.WriteLine ("");
+			Utility.WriteLine ("************************");
 		}
 
 		public bool Simulate(){
 
 			for (int i = 0; i < 30; i++) {
-				Console.WriteLine ("\n### ROUND " + (i+1) + " ###\n");
+				Utility.WriteLine ("\n### ROUND " + (i+1) + " ###\n");
 				PrintState ();
 
 				List<ActiveUnit> allunits = new List<ActiveUnit> ();
@@ -88,7 +92,7 @@ namespace TestOSX
 
 		public void ExecuteAbility(Ability ability,
 			ActiveUnit user, ActiveUnit target){
-			Console.WriteLine ("\n%%%%% " + user.Name + " USES "
+			Utility.WriteLine ("\n%%%%% " + user.Name + " USES "
 				+ ability.Name + " ON " + target.Name + " %%%%%\n");
 			ability.UsageEffect (user, target);
 		}
@@ -102,6 +106,7 @@ namespace TestOSX
 			}
 			for (int i = 0; i < Enemies.Count; i++) {
 				if (Enemies [i].CurrentHP == 0) {
+					Spoils.AddRange (Enemies [i].GetSpoils (1f));
 					Enemies.RemoveAt (i);
 					i--;
 				}
@@ -110,16 +115,23 @@ namespace TestOSX
 
 		public uint CheckIfEnded(){
 			if (Enemies.Count == 0) {
-				Console.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
-				Console.WriteLine ("^^^^^ ALLIES WIN ^^^^^^");
+				Utility.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
+				foreach (Item i in Spoils) {
+					Utility.WriteLine ("&&&&& GOT A " + i.Name () + " &&&&&");
+				}
+				Utility.WriteLine ("\n^^^^^ ALLIES WIN ^^^^^^");
 				return 1;
 			}
 			if (Allies.Count == 0) {
-				Console.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
-				Console.WriteLine ("^^^^^ ENEMIES WIN ^^^^^^");
+				Utility.WriteLine ("^^^^^ BATTLE OVER ^^^^^^");
+				Utility.WriteLine ("^^^^^ ENEMIES WIN ^^^^^^");
 				return 2;
 			}
 			return 0;
+		}
+
+		public List<Item> GetSpoils(){
+			return Spoils;
 		}
 	}
 }

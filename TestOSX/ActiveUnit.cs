@@ -70,8 +70,8 @@ namespace TestOSX
 				bool CRIT = Ability.R.NextDouble () <= critchance;
 
 				if (CRIT) {
-					Console.WriteLine ("%%%%% CRITICAL HIT! (" + critchance + ") %%%%%");
-					Console.WriteLine ("%%%%% " + this.name +
+					Utility.WriteLine ("%%%%% CRITICAL HIT! (" + critchance + ") %%%%%");
+					Utility.WriteLine ("%%%%% " + this.name +
 						" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
 
 					damage = (uint)(((double)damage) * 2);
@@ -82,7 +82,7 @@ namespace TestOSX
 						currenthealth -= damage;
 					}
 				} else {
-					Console.WriteLine ("%%%%% " + this.name +
+					Utility.WriteLine ("%%%%% " + this.name +
 						" TAKES " + damage + " DAMAGE (" + hitchance + ") %%%%%\n");
 
 					if (damage > currenthealth) {
@@ -92,8 +92,20 @@ namespace TestOSX
 					}
 				}
 			} else { //Attack misses
-				Console.WriteLine ("%%%%% ATTACK MISSED! (" + hitchance + ") %%%%%\n");
+				Utility.WriteLine ("%%%%% ATTACK MISSED! (" + hitchance + ") %%%%%\n");
 			}
+		}
+
+		public void HealDamage(ActiveUnit user, Ability ability){
+			//Calculate damage
+			uint damage = ability.Damage (user);
+
+			currenthealth += damage;
+			if (currenthealth > stats.HP)
+				currenthealth = stats.HP;
+
+			Utility.WriteLine ("%%%%% " + this.name +
+				" HEALS " + damage + " DAMAGE %%%%%\n");
 		}
 
 		private double HitChance(ActiveUnit user, Ability ability){
@@ -127,6 +139,7 @@ namespace TestOSX
 		}
 
 		public virtual double DamageModifier (){ return 0;}
+		public virtual List<Item> GetSpoils(float droprate){ return null; }
 
 	}
 }

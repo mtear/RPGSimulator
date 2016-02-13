@@ -21,6 +21,7 @@ namespace TestOSX
 			List<Ability> ret = new List<Ability>();
 			ret.Add(new BasicAttack());
 			ret.Add (new RockThrow ());
+			ret.Add (new Cure1 ());
 			return ret;
 		}
 	}

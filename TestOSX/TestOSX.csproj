@@ -51,6 +51,13 @@
     <Compile Include="PlayerClass.cs" />
     <Compile Include="Class.cs" />
     <Compile Include="RockThrow.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Equipment.cs" />
+    <Compile Include="WoodShield.cs" />
+    <Compile Include="IronHelm.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Cure1.cs" />
+    <Compile Include="TODO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
