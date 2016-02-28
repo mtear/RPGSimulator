@@ -61,6 +61,17 @@ namespace TestOSX
 			return string.Format ("Level: {0}\nHP: {1}\nATK: {2}\nDEF: {3}\nAGI: {4}\nACC: {5}\nLUK: {6}",
 				Level, HP, ATK, DEF, AGI, ACC, LUK);
 		}
+
+		public static StatContainer operator +(StatContainer a, StatContainer b){
+			return new StatContainer (a.level + b.level,
+				a.hp + b.hp,
+				a.attack + b.attack,
+				a.defense + b.defense,
+				a.agility + a.agility,
+				a.accuracy + b.accuracy,
+				a.luck + b.luck
+			);
+		}
 	}
 }
 

@@ -4,7 +4,8 @@ namespace TestOSX
 {
 	public class WoodShield : Equipment
 	{
-		public WoodShield ()
+		public WoodShield () : base(new StatContainer (0, 0,
+			0, 5, 0, 0, 0))
 		{
 		}
 

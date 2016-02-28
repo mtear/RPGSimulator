@@ -4,8 +4,17 @@ namespace TestOSX
 {
 	public abstract class Equipment : Item
 	{
-		public Equipment ()
+
+		private StatContainer stats;
+		public StatContainer Stats {
+			get {
+				return stats;
+			}
+		}
+
+		public Equipment (StatContainer stats)
 		{
+			this.stats = stats;
 		}
 	}
 }

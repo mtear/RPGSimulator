@@ -58,6 +58,8 @@
     <Compile Include="Utility.cs" />
     <Compile Include="Cure1.cs" />
     <Compile Include="TODO.cs" />
+    <Compile Include="EquipmentSet.cs" />
+    <Compile Include="EmptyEquipment.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@ namespace TestOSX
 		{
 		}
 
-		public static bool RecordOutput = true;
+		public static bool RecordOutput = false;
 
 		public static void WriteLine(String message){
 			if(!RecordOutput) return;
